@@ -97,7 +97,7 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
 
 <hr>
 ## 表情帮助库如何使用？
-`http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js` 融云官方表情帮助库引用地址。本表情库使用的是标准的 `emoji` 表情。本表情库一共有128个表情,为32＊32大小。表情库是基于 `web SDK` 的，使用之前请务必提前载入 `web SDK`.表情库中的方法均为`静态方法`.由于部分浏览器显示本表情的 `tag` 为一个小方块。无法得到内容。此处可用escape()方法得到表情 `tag` 内容
+`http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js` 融云官方表情帮助库引用地址。本表情库使用的是标准的 `emoji` 表情。本表情库一共有128个表情,为32＊32大小。表情库是基于 `web SDK` 的，使用之前请务必提前载入 `web SDK`.表情库中的方法均为`静态方法`.由于部分浏览器显示本表情的 `tag` 为一个小方块。无法得到内容。此处可用escape()方法得到表情 `tag` 
 ```js
      console.log('\ud83d\ude00');
      //例如chrome中显示 \ud83d\ude00 为一个小方块，可用escape()方法
@@ -114,8 +114,8 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
      }
 ```
 
-### RongIMClient.Expression.getAllExpression
-得到制定数量的表情
+#### RongIMClient.Expression.getAllExpression
+得到指定数量的表情
 ```js 
  var emojiObjectList = RongIMClient.Expression.getAllExpression(64,0);
   //从下标为0的位置检索64个表情对象,startIndex与count只和最大为128，因为表情对象最多为128个。
@@ -158,4 +158,39 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
      console.log(str);
      //打印为 这是一个表情狞笑
      
+```
+### 浏览器兼容性
+```js
+ // IE 6+ 、chrome 3+ 、firefox 3.5+ 、safari 4+ 、 opera 12+
+```
+<hr>
+## 音频播放帮助库如何使用？
+`http://res.websdk.rongcloud.cn/RongIMClient.voice-0.9.1.min.js` 融云官方音频播放帮助库引用地址.音频播放帮助库是基于 `web SDK` 的，使用之前请务必提前载入 `web SDK`.音频播放帮助库中的方法均为`静态方法`.与`IE`以及`opera`内核类型浏览器不兼容。
+
+#### RongIMClient.voice.init
+初始化音频播放帮助库,使用本库之前务必进行初始化操作，返回为 `boolean` 类型用来说明次音频库是否已经初始化完成
+```js
+     var isInit = RongIMClient.voice.init();
+     console.log(isInit);
+     //可以根据isInit来判断是否已经初始化完成
+```
+
+#### RongIMClient.voice.play
+播放传入的格式为AMR的音频BASE64码
+```js
+     RongIMClient.voice.play('音频BASE64码','音频持续时间(秒)');
+     //如果不知道音频的持续时间，可通过音频base64长度除以1024得到大概秒数
+```
+#### RongIMClient.voice.onprogress
+音频播放过程中执行的进度方法,需自行注册.
+```js
+     RongIMClient.voice.onprogress ＝ function(){
+          console.log("正在执行");
+     };
+     //执行单位时间为一秒执行一次
+```
+### 浏览器兼容性
+```js
+ //pc :     Firefox (Gecko) 3.6 (1.9.2)+     Chrome 7+	 Safari 6.0.2+
+ //mobile :  Firefox (Gecko) 32+     Android 3+	 Safari 6.1+
 ```
