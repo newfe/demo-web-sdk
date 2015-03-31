@@ -133,7 +133,7 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
      console.log(emojiObject);
 ```
 
-#### RongIMClient.Expression.calcUTF(emojiContent)
+#### RongIMClient.Expression.calcUTF
 根据表情的 `content` 计算得到表情的 `tag` 属性
 ```js
      var tag = RongIMClient.Expression.calcUTF('\uF600');
@@ -148,7 +148,7 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
      console.log(emojiObject);
 ```
 
-#### RongIMClient.Expression.retrievalEmoji(string,callback)
+#### RongIMClient.Expression.retrievalEmoji
 检索传入的字符串中是否含有表情 `tag`，如有则根据传入的callback函数执行制定操作,callback函数中 `务必带返回值` 
 ```js
      var str = RongIMClient.Expression.retrievalEmoji('这是一个表情\ud83d\ude00',function(emojiObject){
