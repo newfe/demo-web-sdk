@@ -198,7 +198,7 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
 #### RongIMClient.voice.play
 播放传入的格式为AMR的音频BASE64码
 ```js
-     RongIMClient.voice.play('音频BASE64码','音频持续时间(秒)');
+     RongIMClient.voice.play('格式为AMR的音频BASE64码','音频持续时间(秒)');
      //如果不知道音频的持续时间，可通过音频base64长度除以1024得到大概秒数
 ```
 #### RongIMClient.voice.onprogress
