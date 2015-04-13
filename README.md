@@ -214,3 +214,43 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
  //pc :     Firefox (Gecko) 3.6 (1.9.2)+     Chrome 7+	 Safari 6.0.2+
  //mobile :  Firefox (Gecko) 32+     Android 3+	 Safari 6.1+
 ```
+<hr>
+## web端本地存储帮助库如何使用？
+`http://res.websdk.rongcloud.cn/RongIMClient.indexedDB.min.js` 融云官方web端本地存储帮助库引用地址.web端本地存储帮助库是基于 `indexed DB` 的，使用之前请务必确保提前载入 `web SDK` 和当前浏览器支持 `indexed DB` .web端本地存储帮助库中的方法均为`静态方法`.
+
+#### RongIMClient.indexedDB.getMessageListFromIndexedDB
+得到本地之前存储的消息对象列表.
+```js
+     RongIMClient.indexedDB.getMessageListFromIndexedDB(function(msgList){
+          console.log(msgList);
+     });
+```
+
+#### RongIMClient.indexedDB.addMessageToIndexedDB
+将消息对象添加到本地存储.
+```js
+     var msg=RongIMClient.TextMessage.obtain("this is a demo");
+     var messageId=msg.getMessageId();
+     RongIMClient.indexedDB.addMessageToIndexedDB(msg,function(){
+          console.log('add success');
+     });
+```
+#### RongIMClient.indexedDB.deleteMessageFromIndexedDB
+根据消息标识id把指定消息对象从本地存储删除.
+```js
+     RongIMClient.indexedDB.deleteMessageFromIndexedDB(messageId,function(){
+          console.log('delete success');
+     });
+```
+#### RongIMClient.indexedDB.getMessageListCountFromIndexedDB
+得到本地存储的消息对象列表长度.
+```js
+     RongIMClient.indexedDB.getMessageListCountFromIndexedDB(function(count){
+          console.log('length : ' + count);
+     });
+```
+### 浏览器兼容性
+```js
+ //pc :     Firefox (Gecko) 4 (2)+     Chrome 12+	 Internet Explorer 10+
+ //mobile :  Firefox (Gecko) 6+
+```
