@@ -118,7 +118,7 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
 
 <hr>
 ## 表情帮助库如何使用？
-`http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js` 融云官方表情帮助库引用地址。本表情库使用的是标准的 `emoji` 表情。本表情库一共有128个表情,为32＊32大小。表情库是基于 `web SDK` 的，使用之前请务必提前载入 `web SDK`.表情库中的方法均为`静态方法`.由于部分浏览器显示本表情的 `tag` 为一个小方块。无法得到内容。此处可用escape()方法得到表情 `tag` 
+`http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js` 融云官方表情帮助库引用地址。本表情库使用的是标准的 `emoji` 表情。本表情库一共有128个表情,默认为为22px＊22px。表情库是基于 `web SDK` 的，使用之前请务必提前载入 `web SDK`.表情库中的方法均为`静态方法`.由于部分浏览器显示本表情的 `tag` 为一个小方块。无法得到内容。此处可用escape()方法得到表情 `tag` 
 ```js
      console.log('\ud83d\ude00');
      //例如chrome中显示 \ud83d\ude00 为一个小方块，可用escape()方法
