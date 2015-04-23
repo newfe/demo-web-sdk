@@ -149,7 +149,7 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
 #### RongIMClient.Expression.getEmojiByContent
 根据表情的 `content` ( `content` 为一个UTF16码，可根据表情对象 `tag` 属性计算得到此UTF16码)来得到表情对象
 ```js
-     var emojiObject = RongIMClient.Expression.getEmojiByContent('\uF600');
+     var emojiObject = RongIMClient.Expression.getEmojiByContent('\u1F600');
      //如果传入的不是合法UTF16码或者表情名单中不存在此UTF16码则返回 undeined 
      console.log(emojiObject);
 ```
