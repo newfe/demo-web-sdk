@@ -157,9 +157,9 @@ web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先
 #### RongIMClient.Expression.calcUTF
 根据表情的 `content` 计算得到表情的 `tag` 属性
 ```js
-     var tag = RongIMClient.Expression.calcUTF('\uF600');
+     var tag = RongIMClient.Expression.calcUTF('\u1F600');
      console.log(tag);
-     //返回\ud83d\ude00 即将 \uF600 计算为 \ud83d\ude00
+     //返回\ud83d\ude00 即将 \u1F600 计算为 \ud83d\ude00
 ```
 
 #### RongIMClient.Expression.getEmojiObjByEnglishNameOrChineseName
