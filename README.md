@@ -22,29 +22,7 @@ RongIMClient.init("appkey");
 ```js
 RongIMClient.setConnectionStatusListener({  
      onChanged: function (status) {  
-          switch (status.getValue()) {
-                //链接成功
-                case status.CONNECTED:
-                    //do something...
-                    break;
-                //正在链接
-                case status.CONNECTING:
-                    break;
-                //重新链接
-                case status.RECONNECT:
-                    break;
-                //其他设备登陆
-                case status.OTHER_DEVICE_LOGIN:
-                //关闭
-                case status.CLOSED:
-                //未知错误
-                case status.UNKNOWN_ERROR:
-                //登出
-                case status.LOGOUT:
-                //用户已被封禁
-                case status.BLOCK:
-                    break;
-            }
+          console.log(status);
      }  
 }); 
 ```
@@ -57,43 +35,7 @@ RongIMClient.connect("token", {
          window.console.log("connected，userid＝" + userid)
      },
      onError: function (c) {
-          var info='';
-          switch (c.getValue()) {
-               case c.UNACCEPTABLE_PROTOCOL_VERSION:
-                    info='不可接受的协议版本';
-                    break;
-               case c.IDENTIFIER_REJECTED:
-                    info='appkey不正确';
-                    break;
-               case c.SERVER_UNAVAILABLE:
-                    info='服务器不可用';
-                    break;
-               case c.TOKEN_INCORRECT:
-                    info='token无效';
-                    break;
-               case c.NOT_AUTHORIZED:
-                    info='未认证';
-                    break;
-               case c.REDIRECT:
-                    info='重新获取导航';
-                    break;
-               case c.PACKAGE_ERROR:
-                    info='包名错误';
-                    break;
-               case c.APP_BLOCK_OR_DELETE:
-                    info='应用已被封禁或已被删除';
-                    break;
-               case c.BLOCK:
-                    info='用户被封禁';
-                    break;
-               case c.TOKEN_EXPIRE:
-                    info='token已过期';
-                    break;
-               case c.DEVICE_ERROR:
-                    info='设备号错误';
-                    break;
-          }
-          console.info("失败:"+info);
+          console.info("失败:"+c);
      }
 });
 ```
@@ -125,31 +67,7 @@ element.onclick = function () {
                 //发送成功逻辑处理
            },
            onError: function (x) {
-               var info='';
-               switch (x){
-                    case RongIMClient.SendErrorStatus.UNKNOWN:
-                         info='未知错误';
-                         break;
-                    case RongIMClient.SendErrorStatus.TIMEOUT:
-                         info='发送超时';
-                         break;
-                    case RongIMClient.SendErrorStatus.REJECTED_BY_BLACKLIST:
-                         info='在黑名单中，无法向对方发送消息';
-                         break;
-                    case RongIMClient.SendErrorStatus.NOT_IN_DISCUSSION:
-                         info='不在讨论组中';
-                         break;
-                    case RongIMClient.SendErrorStatus.NOT_IN_GROUP:
-                         info='不在群组中';
-                         break;
-                    case RongIMClient.SendErrorStatus.NOT_IN_CHATROOM:
-                         info='不在聊天室中';
-                         break;
-                    default :
-                         info=x;
-                         break;
-                }
-                console.info('发送失败:'+info);
+                console.info('发送失败:'+x);
            }
        });
 };
