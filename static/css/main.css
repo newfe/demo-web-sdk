@@ -1,7 +1,7 @@
-input,textarea,div,button{
+input, textarea, div, button {
     outline: none;
 }
-.hidden{
+.hidden {
     display: none !important;
     visibility: hidden !important;
 }
@@ -30,7 +30,7 @@ ul {
 p {
     height: 24px;
     line-height: 24px;
-    margin: 0!important;
+    margin: 0 !important;
 }
 ul li {
     list-style-type: none;
@@ -88,8 +88,11 @@ ul li {
 .dialog_header .setting {
     float: right;
 }
-.dialog_header .setting a{width: 34px;display: block;}
-.dialog_header .setting a label{
+.dialog_header .setting a {
+    width: 34px;
+    display: block;
+}
+.dialog_header .setting a label {
     cursor: pointer;
     display: block;
     width: 13px;
@@ -157,8 +160,8 @@ ul li {
     margin-bottom: 10px;
     overflow-y: auto;
 }
-.list li:hover{
-    background-color:#ccc ;
+.list li:hover {
+    background-color: #ccc;
 }
 .listOperatorContent div {
     width: 137px;
@@ -422,18 +425,18 @@ ul li {
 }
 .dialog_box .other_user .msg .msgBody {
     float: none;
-    background-color: #fff!important;
+    background-color: #fff !important;
     color: #000;
     max-width: 300px;
     margin-left: 5px;
     padding: 12px 19px 12px 10px;
 }
-.dialog_box .other_user .msg .voice{
+.dialog_box .other_user .msg .voice {
     width: 80px;
     background: url("../images/voicefrom.png") no-repeat;
     background-position: 80px 8px;
 }
-.dialog_box .self .msg .voice{
+.dialog_box .self .msg .voice {
     width: 80px;
     background: url("../images/voiceto.png") no-repeat;
     background-position: 0 8px;
@@ -578,8 +581,12 @@ ul li {
     width: 494px;
     line-height: 20px;
 }
-.textarea span{height: 20px;}
-.textarea span img{height: 20px;}
+.textarea span {
+    height: 20px;
+}
+.textarea span img {
+    height: 20px;
+}
 .msg_box .input_box .button_box {
     margin-left: 20px;
     float: right;
@@ -677,9 +684,12 @@ ul li {
 .footer {
     text-align: center;
     color: #176173;
-    margin-top: 10px;
+    margin-top: 20px;
 }
-.btnBack{display: none;}
+.btnBack {
+    display: none;
+}
+
 /** * 登录注册 */
 .login-header {
 }
@@ -770,21 +780,283 @@ ul li {
 .phone-login-logo {
     display: none;
 }
-.RongIMexpressionWrap{display: none;height: 150px;
+.RongIMexpressionWrap {
+    display: none;
+    height: 150px;
     background-color: #fff;
-    overflow-y: scroll;}
-.RongIMexpressionWrap span{width: 40px;height: 40px; margin-left: 15px; margin-top: 10px; display: inline-block;}
-.slice{
+    overflow-y: scroll;
+}
+.RongIMexpressionWrap span {
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    margin-top: 10px;
+    display: inline-block;
+}
+.slice {
     clear: both;
 }
-.light_notice_backlayer{top: 0px; left: 0px; width: 100%; height: 100%; position: absolute;
+.light_notice_backlayer {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
     opacity: 0.15;
     z-index: 60000;
     background-color: rgb(0, 0, 0);
 }
-.frontlayer{position: absolute;
+.frontlayer {
+    position: absolute;
     z-index: 60001;
-    -webkit-user-select: none;}
+    -webkit-user-select: none;
+}
+.light_popBox_backlayer {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.15;
+    z-index: 60000;
+    background-color: rgb(0, 0, 0);
+}
+.popBox_frontlayer {
+    position: absolute;
+    z-index: 60001;
+    -webkit-user-select: none;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    top: 0px;
+    left: 0px;
+}
+.light_popBox_wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+.light_popBox_MainWrapper {
+    height: 475px;
+    width: 565px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 3px solid #acacac;
+    border-radius: 4px;
+    position: absolute;
+    color: #333;
+}
+.light_popBox_title {
+    background-color: #eee;
+    color: #333;
+    font-size: 13px;
+    height: 36px;
+    line-height: 36px;
+    cursor: move;
+    -moz-user-select: none;
+    text-align: center;
+}
+.light_popBox_title span {
+    margin-left: 14px;
+}
+.light_popBox_title font {
+    display: inline-block;
+}
+.light_popBox_title font.pen {
+    width: 16px;
+    height: 16px;
+    background: url("../images/icon_pen.png");
+    background-size: 14px;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    background-position: 0px 3px;
+    cursor: pointer;
+}
+.light_popBox_title span.light_popBox_close {
+    margin-right: 14px;
+    float: right;
+    height: 36px;
+    line-height: 36px;
+}
+.light_popBox_title span.light_popBox_close a {
+    height: 36px;
+    line-height: 36px;
+}
+.light_popBox_content {
+    margin: 0 auto;
+    width: 100%;
+    font-size: 14px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    min-height: 387px;
+}
+.light_popBox_content .light_popBox_friendList {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 60%;
+    height: 387px;
+}
+.light_popBox_content .discussion_userList {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 39.5%;
+    border-left: 2px solid #F5F5F5;
+    min-height: 387px;
+}
+.light_popBox_content .discussion_subtitle {
+    height: 28px;
+    background-color: #fafafa;
+    border-bottom: 1px solid #F5F5F5;
+    width: 100%;
+    text-align: left;
+}
+.light_popBox_content .discussion_subtitle span {
+    height: 28px;
+    line-height: 28px;
+    padding-left: 10px;
+}
+.discussion_listAddr {
+    height: 359px;
+    overflow-y: auto;
+}
+.discussion_listAddr ul {
+    margin-top: 15px;
+    padding-left: 15px;
+    position: relative;
+}
+.discussion_listAddr ul li {
+    position: relative;
+    overflow: hidden;
+    color: #000;
+    cursor: pointer;
+    padding: 6px 0 6px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+.discussion_listAddr ul li span {
+    display: block;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.discussion_listAddr ul li span.user_img {
+    width: 37px;
+    height: 37px;
+}
+.discussion_listAddr ul li span.user_name {
+    height: 36px;
+    line-height: 36px;
+    padding-left: 13px;
+    color: #313f44;
+}
+.discussion_listAddr ul li img {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #fff;
+    box-shadow: 0px 1px 0px #d7d7d7;
+}
+.discussion_select_user {
+    width: 22px;
+    height: 22px;
+    background: url("../images/discussion_icons.png");
+    display: block;
+    float: right;
+    margin-right: 15px;
+    margin-top: 7px;
+    background-repeat: no-repeat;
+}
+.discussion_selected .discussion_select_user {
+    background-position: 0px -22px;
+}
+.discussion_selected_delete .discussion_select_user {
+    background-position: 0px -66px !important;
+}
+.light_popBox_opear {
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #F5F5F5;
+}
+.light_popBox_opear span {
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: inline-block;
+}
+.light_popBox_notice {
+    float: left;
+    color: #f00;
+    margin-left: 20px;
+    position: relative;
+    overflow: hidden;
+    display: none;
+}
+.light_popBox_opear font {
+    display: inline-block;
+    width: 10px;
+}
+.light_popBox_opear span.sub {
+    background-color: #227ddd;
+    color: #fff;
+    float: right;
+    text-align: center;
+    margin-right: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.light_popBox_opear span a {
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    border-radius: 4px;
+}
+.light_popBox_opear span.sub a {
+    color: #fff;
+}
+.light_popBox_opear span.sub a:hover {
+    background-color: #4f99ee;
+}
+.light_popBox_opear span.can {
+    background-color: #eee;
+    color: #333;
+}
+.light_popBox_opear span.can a {
+    height: 28px;
+    line-height: 28px;
+    width: 88px;
+    border: 1px solid #acacac;
+}
+.light_popBox_opear span.can a:hover {
+    background-color: #f5f5f5;
+    boder: 1px solid #bcbcbc;
+}
+.discussion_userList .discussion_delete_user {
+    width: 22px;
+    height: 22px;
+    background: url("../images/discussion_icons.png");
+    display: block;
+    float: right;
+    margin-right: 15px;
+    margin-top: 7px;
+    background-position: 0px -44px;
+    background-repeat: no-repeat;
+}
+.setDialog {
+    cursor: pointer;
+    display: inline-block;
+    width: 13px;
+    height: 25px;
+    background: url("../images/icons.min.png") no-repeat;
+    background-position: -163px 15px;
+    margin-left: 10px;
+}
 @media screen and (max-width:960px) {
     /* 会话列表 */
     .container {
@@ -795,7 +1067,7 @@ ul li {
     .wrap {
         width: 100%;
     }
-    .wrap .header{
+    .wrap .header {
         background-color: #22aed8;
     }
     .wrap .left {
@@ -829,7 +1101,8 @@ ul li {
     }
     .phone_dialog_header {
         display: block;
-        /*position: fixed;*/
+        /* position: fixed;
+        */
         top: 0px;
         left: 0px;
         width: 100%;
@@ -881,7 +1154,7 @@ ul li {
         height: 20px;
         float: left;
     }
-    .conversationInfo>p{
+    .conversationInfo>p {
         margin-top: 10px;
     }
     .listConversation ul li span.conversationInfo {
@@ -903,7 +1176,8 @@ ul li {
     }
     .right .dialog_box_header {
         display: block;
-        /*position: fixed;*/
+        /* position: fixed;
+        */
         top: 0px;
         left: 0px;
         width: 100%;
@@ -919,7 +1193,8 @@ ul li {
     .right .dialog_box {
     }
     .right .msg_box {
-        /*position: fixed;*/
+        /* position: fixed;
+        */
         bottom: 0px;
         left: 0px;
         background-color: #fff;
@@ -927,13 +1202,13 @@ ul li {
         box-sizing: border-box;
         height: auto;
     }
-    .right .dialog_box_header{
+    .right .dialog_box_header {
         width: 100%;
         box-sizing: border-box;
         padding-right: 80px;
         overflow: hidden;
     }
-    .right .dialog_box_header a{
+    .right .dialog_box_header a {
         text-align: left;
         width: 80px;
         float: left;
@@ -976,7 +1251,7 @@ ul li {
         width: 28px;
         height: 50px;
     }
-    .msg_box .input_box{
+    .msg_box .input_box {
         position: relative;
     }
     .msg_box .input_box .button_box span {
@@ -998,7 +1273,9 @@ ul li {
         padding: 6px;
         color: #000;
     }
-    .textarea span{height: 20px;}
+    .textarea span {
+        height: 20px;
+    }
     .msg_box .input_box .button_box {
         float: right;
         margin-right: 0px;
@@ -1018,19 +1295,28 @@ ul li {
         background-color: #fff;
         overflow-y: scroll;
     }
-    .RongIMexpressionWrap span{width: 40px; height: 40px; margin-left: 10px; margin-top: 10px; display: inline-block;}
+    .RongIMexpressionWrap span {
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+        margin-top: 10px;
+        display: inline-block;
+    }
     .footer {
         display: none;
     }
     .slice {
         clear: both;
     }
-    .btnBack{display: inherit;}
+    .btnBack {
+        display: inherit;
+    }
 }
 @media screen and (max-width:664px) {
-    body{
+    body {
         background-color: #22aed8;
     }
+
     /* 登录、注册 */
     .login-wrap {
         width: 100%;
