@@ -12,14 +12,16 @@ Demostration of Rong Web SDK.
 
 ## 指定版本号引用
 `http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js?v=123` 历史版本号目前可从0.9.1到0.9.8。
->+   0.9.1
->+   0.9.1
->+   0.9.1
->+   0.9.1
->+   0.9.1
->+   0.9.1
->+   0.9.1>+   0.9.1
+>+   [0.9.1](http://res.websdk.rongcloud.cn/RongIMClient-0.9.1.min.js?v=123)
+>+   [0.9.2](http://res.websdk.rongcloud.cn/RongIMClient-0.9.2.min.js?v=123)
+>+   [0.9.3](http://res.websdk.rongcloud.cn/RongIMClient-0.9.3.min.js?v=123)
+>+   [0.9.4](http://res.websdk.rongcloud.cn/RongIMClient-0.9.4.min.js?v=123)
+>+   [0.9.5](http://res.websdk.rongcloud.cn/RongIMClient-0.9.5.min.js?v=123)
+>+   [0.9.6](http://res.websdk.rongcloud.cn/RongIMClient-0.9.6.min.js?v=123)
+>+   [0.9.7](http://res.websdk.rongcloud.cn/RongIMClient-0.9.7.min.js?v=123)
+>+   [0.9.8](http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js?v=123)
 
+#### 此事例中的代码皆为0.9.8版本，使用时请注意兼容性问题。
 
 ### 初始化web sdk ，此项必须设置
 ```js
@@ -29,7 +31,31 @@ RongIMClient.init("appkey");
 ```js
 RongIMClient.setConnectionStatusListener({  
      onChanged: function (status) {  
-          console.log(status);
+          switch (status) {
+                //链接成功
+                case RongIMClient.ConnectionStatus.CONNECTED:
+                    console.log('链接成功');
+                    break;
+                //正在链接
+                case RongIMClient.ConnectionStatus.CONNECTING:
+                    console.log('正在链接');
+                    break;
+                //重新链接
+                case RongIMClient.ConnectionStatus.RECONNECT:
+                    console.log('重新链接');
+                    break;
+                //其他设备登陆
+                case RongIMClient.ConnectionStatus.OTHER_DEVICE_LOGIN:
+                //连接关闭
+                case RongIMClient.ConnectionStatus.CLOSURE:
+                //未知错误
+                case RongIMClient.ConnectionStatus.UNKNOWN_ERROR:
+                //登出
+                case RongIMClient.ConnectionStatus.LOGOUT:
+                //用户已被封禁
+                case RongIMClient.ConnectionStatus.BLOCK:
+                    break;
+            }
      }  
 }); 
 ```
@@ -42,7 +68,49 @@ RongIMClient.connect("token", {
          window.console.log("connected，userid＝" + userid)
      },
      onError: function (c) {
-          console.info("失败:"+c);
+          var info = '';
+          switch (c) {
+               case RongIMClient.callback.ErrorCode.TIMEOUT:
+                    info = '超时';
+                    break;
+               case RongIMClient.callback.ErrorCode.UNKNOWN_ERROR:
+                    info = '未知错误';
+                    break;
+               case RongIMClient.ConnectErrorStatus.UNACCEPTABLE_PROTOCOL_VERSION:
+                    info = '不可接受的协议版本';
+                    break;
+               case RongIMClient.ConnectErrorStatus.IDENTIFIER_REJECTED:
+                    info = 'appkey不正确';
+                    break;
+               case RongIMClient.ConnectErrorStatus.SERVER_UNAVAILABLE:
+                    info = '服务器不可用';
+                    break;
+               case RongIMClient.ConnectErrorStatus.TOKEN_INCORRECT:
+                    info = 'token无效';
+                    break;
+               case RongIMClient.ConnectErrorStatus.NOT_AUTHORIZED:
+                    info = '未认证';
+                    break;
+               case RongIMClient.ConnectErrorStatus.REDIRECT:
+                    info = '重新获取导航';
+                    break;
+               case RongIMClient.ConnectErrorStatus.PACKAGE_ERROR:
+                    info = '包名错误';
+                    break;
+               case RongIMClient.ConnectErrorStatus.APP_BLOCK_OR_DELETE:
+                    info = '应用已被封禁或已被删除';
+                    break;
+               case RongIMClient.ConnectErrorStatus.BLOCK:
+                    info = '用户被封禁';
+                    break;
+               case RongIMClient.ConnectErrorStatus.TOKEN_EXPIRE:
+                    info = 'token已过期';
+                    break;
+               case RongIMClient.ConnectErrorStatus.DEVICE_ERROR:
+                    info = '设备号错误';
+                    break;
+          }
+          console.alert("失败:" + info);
      }
 });
 ```
@@ -74,7 +142,31 @@ element.onclick = function () {
                 //发送成功逻辑处理
            },
            onError: function (x) {
-                console.info('发送失败:'+x);
+                var info = '';
+                switch (x) {
+                    case RongIMClient.callback.ErrorCode.TIMEOUT:
+                        info = '超时';
+                        break;
+                    case RongIMClient.callback.ErrorCode.UNKNOWN_ERROR:
+                        info = '未知错误';
+                        break;
+                    case RongIMClient.SendErrorStatus.REJECTED_BY_BLACKLIST:
+                        info = '在黑名单中，无法向对方发送消息';
+                        break;
+                    case RongIMClient.SendErrorStatus.NOT_IN_DISCUSSION:
+                        info = '不在讨论组中';
+                        break;
+                    case RongIMClient.SendErrorStatus.NOT_IN_GROUP:
+                        info = '不在群组中';
+                        break;
+                    case RongIMClient.SendErrorStatus.NOT_IN_CHATROOM:
+                        info = '不在聊天室中';
+                        break;
+                    default :
+                        info = x;
+                        break;
+                }
+                console.alert('发送失败:' + info);
            }
        });
 };
