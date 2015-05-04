@@ -192,7 +192,7 @@ element.onclick = function () {
 ```
 
 ### 使用指定链接通道链接服务器 
-web SDK 通道才用层层降级的方式进行兼容处理。连接通道首先默认使用websocket，如环境不支持websocket则自动降级至flash socket，不支持flash则自定降级至xhr-polling，以此来达到全兼容的目的。
+web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先默认使用websocket，如环境不支持websocket则自动降级至flash socket，不支持flash则自定降级至xhr-polling，以此来达到全兼容的目的。
 <br/>
 如果想强制使用长链接连接服务器则必须设置`window.WEB_XHR_POLLING = true;`
 #### 通道选项设置[使用此项必须为0.9.6版本,使用前请确定SDK版本号为0.9.6及以上版本]
