@@ -3,12 +3,12 @@ demo-web-sdk
 
 Demostration of Rong Web SDK.
 
-## 融云 web SDK 如何使用
+## 融云 Web SDK 如何使用
 
 [文档参考](http://docs.rongcloud.cn/api/js/index.html " SDK 文档")
 
 
-使用融云 `web SDK` 发消息之前必须利用申请的`appkey`进行初始化，只有在初始化之后才能使用RongIMClient.getInstance()方法得到实例.如只想知晓如何使用 web SDK 请参考 `SDK_Demo.html`
+使用融云 `Web SDK` 发消息之前必须利用申请的`appkey`进行初始化，只有在初始化之后才能使用RongIMClient.getInstance()方法得到实例.如只想知晓如何使用 Web SDK 请参考 `SDK_Demo.html`
 
 ## 指定版本号引用
 `http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js?v=123` 历史版本号目前可从0.9.1到0.9.8。
@@ -23,7 +23,7 @@ Demostration of Rong Web SDK.
 
 #### 此事例中的代码皆为0.9.8版本，使用时请注意兼容性问题。
 
-### 初始化web sdk ，此项必须设置
+### 初始化 Web SDK ，此项必须设置
 ```js
 RongIMClient.init("appkey");
 ```
@@ -172,7 +172,7 @@ element.onclick = function () {
 };
 ```
 
-### web SDK 浏览器兼容性
+### Web SDK 浏览器兼容性
 ```js
 
  //PC side
@@ -192,7 +192,7 @@ element.onclick = function () {
 ```
 
 ### 使用指定链接通道链接服务器 
-web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先默认使用websocket，如环境不支持websocket则自动降级至flash socket，不支持flash则自定降级至xhr-polling，以此来达到全兼容的目的。
+Web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先默认使用websocket，如环境不支持websocket则自动降级至 Flash socket，不支持 Flash 则自定降级至 xhr-polling，以此来达到全兼容的目的。
 <br/>
 如果想强制使用长链接连接服务器则必须设置`window.WEB_XHR_POLLING = true;`
 #### 通道选项设置[使用此项必须为0.9.6版本,使用前请确定SDK版本号为0.9.6及以上版本]
@@ -208,16 +208,16 @@ web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
 `window.WEB_SOCKET_FORCE_FLASH > window.WEB_XHR_POLLING`
 
 #### 注意:
- 1 : `web SDK` 是全异步的，所以发送消息之前确保链接成功。<br/>
+ 1 : `Web SDK` 是全异步的，所以发送消息之前确保链接成功。<br/>
  2 : 本demo仅做演示使用，页面不做兼容性考虑。<br/>
- 3 : 本`web SDK`为强兼容性，demo的弱兼容性与SDK无关。<br/>
+ 3 : 本`Web SDK`为强兼容性，demo的弱兼容性与SDK无关。<br/>
  4 : 使用本示例的页面在商业上使用而引发的处理不当与本人以及本人所属组织无关。<br/>
  5 : 本示例仅做演示，仅仅只做演示。未考虑低版本及部分版本浏览器兼容性。<br/>
  6 : 浏览器兼容性项中未列出的浏览器版本项皆为不支持的浏览器版本
 
 <hr>
 ## 表情帮助库如何使用？
-`http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js` 融云官方表情帮助库引用地址。本表情库使用的是标准的 `emoji` 表情。本表情库一共有128个表情,默认为为22px＊22px。表情库是基于 `web SDK` 的，使用之前请务必提前载入 `web SDK`.表情库中的方法均为`静态方法`.由于部分浏览器显示本表情的 `tag` 为一个小方块。无法得到内容。此处可用escape()方法得到表情 `tag` 
+`http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js` 融云官方表情帮助库引用地址。本表情库使用的是标准的 `emoji` 表情。本表情库一共有128个表情,默认为为22px＊22px。表情库是基于 `Web SDK` 的，使用之前请务必提前载入 `Web SDK`.表情库中的方法均为`静态方法`.由于部分浏览器显示本表情的 `tag` 为一个小方块。无法得到内容。此处可用escape()方法得到表情 `tag` 
 ```js
      console.log('\ud83d\ude00');
      //例如chrome中显示 \ud83d\ude00 为一个小方块，可用escape()方法
@@ -285,7 +285,7 @@ web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
 ```
 <hr>
 ## 音频播放帮助库如何使用？
-`http://res.websdk.rongcloud.cn/RongIMClient.voice-0.9.1.min.js` 融云官方音频播放帮助库引用地址.音频播放帮助库是基于 `web SDK` 的，使用之前请务必提前载入 `web SDK`.音频播放帮助库中的方法均为`静态方法`.与`IE`以及`opera`内核类型浏览器不兼容。
+`http://res.websdk.rongcloud.cn/RongIMClient.voice-0.9.1.min.js` 融云官方音频播放帮助库引用地址.音频播放帮助库是基于 `Web SDK` 的，使用之前请务必提前载入 `Web SDK`.音频播放帮助库中的方法均为`静态方法`.与`IE`以及`opera`内核类型浏览器不兼容。
 
 #### RongIMClient.voice.init
 初始化音频播放帮助库,使用本库之前务必进行初始化操作，返回为 `boolean` 类型用来说明次音频库是否已经初始化完成
@@ -315,8 +315,8 @@ web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
  //mobile :  Firefox (Gecko) 32+     Android 3+	 Safari 6.1+
 ```
 <hr>
-## web端本地存储帮助库如何使用？
-`http://res.websdk.rongcloud.cn/RongIMClient.indexedDB.min.js` 融云官方web端本地存储帮助库引用地址.web端本地存储帮助库是基于 `indexed DB` 的，使用之前请务必确保提前载入 `web SDK` 和当前浏览器支持 `indexed DB` .web端本地存储帮助库中的方法均为`静态方法`.
+## Web 端本地存储帮助库如何使用？
+`http://res.websdk.rongcloud.cn/RongIMClient.indexedDB.min.js` 融云官方 Web 端本地存储帮助库引用地址. Web 端本地存储帮助库是基于 `indexed DB` 的，使用之前请务必确保提前载入 `Web SDK` 和当前浏览器支持 `indexed DB` . Web 端本地存储帮助库中的方法均为`静态方法`.
 
 #### RongIMClient.indexedDB.getMessageListFromIndexedDB
 得到本地之前存储的消息对象列表.
