@@ -193,6 +193,7 @@ RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.PRIV
      onSuccess:function(symbol){
      //symbol为boolean值，如果为true则表示还有剩余历史消息可拉取，为false的话表示没有剩余历史消息可供拉取。
      },onError:function(){
+     //APP未开启消息漫游或处理异常
      //throw new ERROR ......
      }
 })
