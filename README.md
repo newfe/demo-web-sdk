@@ -241,7 +241,8 @@ Web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
  4 : 使用本示例的页面在商业上使用而引发的处理不当与本人以及本人所属组织无关。<br/>
  5 : 本示例仅做演示，仅仅只做演示。未考虑低版本及部分版本浏览器兼容性。<br/>
  6 : 浏览器兼容性项中未列出的浏览器版本项皆为不支持的浏览器版本
-
+### 须知
+本Demo需配合`demo server`一起使用。[Demo Server](https://github.com/rongcloud/demo-server-php)
 <hr>
 ## 表情帮助库如何使用？
 `http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js` 融云官方表情帮助库引用地址。本表情库使用的是标准的 `emoji` 表情。本表情库一共有128个表情,默认为为22px＊22px。表情库是基于 `Web SDK` 的，使用之前请务必提前载入 `Web SDK`.表情库中的方法均为`静态方法`.由于部分浏览器显示本表情的 `tag` 为一个小方块。无法得到内容。此处可用escape()方法得到表情 `tag` 
