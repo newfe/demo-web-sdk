@@ -171,30 +171,32 @@ element.onclick = function () {
        });
 };
 ```
-### 同步会话列表
+### 同步会话列表(此方法正处于调试阶段，后期可能会有改动)
 在浏览器中使用融云`web SDK`与在移动端中使用融云`ios、安卓SDK`不同的是浏览器一刷新页面，之前已经存好的会话列表都将会清空。为了减少这种情况引起的麻烦，可以使用`RongIMClient.getInstance().syncConversationList()`方法，来同步的会话列表。这样的话，就不会因为刷新页面导致会话列表情况所引起的种种麻烦了。
 ```js
  RongIMClient.getInstance().syncConversationList({
                         onSuccess:function(){
                             //同步会话列表
-                            var ConversationList = RongIMClient.getInstance().getConversationList();
-                            // do something
+                            setTimeout(function(){
+                              var ConversationList = RongIMClient.getInstance().getConversationList();
+                              // do something
+                            },1000);
                         },onError:function(){
                         }
                     });
 ```
 
-### 获取历史纪录
+### 获取历史纪录(此方法正处于调试阶段，后期可能会有改动)
 融云 `web SDK`最新提供`RongIMClient.getInstance().getHistoryMessages()`方法，来帮助开发者获取历史纪录。不再需要为如何在web端存储历史纪录而发愁。*使用此方法前提是APP必须`开启消息漫游`，如APP没有开启消息漫游则执行onError方法。*
 ```js
-//此方法最多一次行拉取200条消息。拉取顺序按时间倒序拉取。
-//拉取到的历史消息会自动填充到消息监听器中。也就是说执行完此方法，消息监听器就会收到拉取到的历史消息。
+// 此方法最多一次行拉取200条消息。拉取顺序按时间倒序拉取。
 RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.PRIVATE,'targeid',10,{
-     onSuccess:function(symbol){
-     //symbol为boolean值，如果为true则表示还有剩余历史消息可拉取，为false的话表示没有剩余历史消息可供拉取。
+     onSuccess:function(symbol,HistoryMessages){
+     // symbol为boolean值，如果为true则表示还有剩余历史消息可拉取，为false的话表示没有剩余历史消息可供拉取。
+     // HistoryMessages 为拉取到的历史消息列表
      },onError:function(){
-     //APP未开启消息漫游或处理异常
-     //throw new ERROR ......
+     // APP未开启消息漫游或处理异常
+     // throw new ERROR ......
      }
 })
 ```
