@@ -15,8 +15,11 @@
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body class="container">
-<div class="bro_notice" style="z-index:1000;width:100%;position:fixed; background-color: #FCF8E3; color: #000;text-align: center;margin: 0 auto;display: none;">
-    <p>Web SDK Demo 正处于测试阶段，部分浏览器会有兼容问题，有问题请您 <a style="color: #428BCA;" href="https://developer.rongcloud.cn/ticket/create" target="_blank">提工单反馈。</a> 此 Demo 只做 Web SDK 演示，只截取部分好友显示。
+<div class="bro_notice"
+     style="z-index:1000;width:100%;position:fixed; background-color: #FCF8E3; color: #000;text-align: center;margin: 0 auto;display: none;">
+    <p>Web SDK Demo 正处于测试阶段，部分浏览器会有兼容问题，有问题请您 <a style="color: #428BCA;"
+                                                 href="https://developer.rongcloud.cn/ticket/create" target="_blank">提工单反馈。</a>
+        此 Demo 只做 Web SDK 演示，只截取部分好友显示。
     </p>
 </div>
 <div class="wrap">
@@ -48,11 +51,12 @@
             <hr>
             <span class="volSetting"><span class="hover" id="closeVoice">关闭声音</span></span>
             <hr>
-            <span  class="logOut"><span id="close" class="hover">退出登录</span></span>
+            <span class="logOut"><span id="close" class="hover">退出登录</span></span>
         </div>
         <div class="listOperatorContent">
             <div class="conversationBtn">
-                <a href="javascript:void(0)" title="聊天"><span><font id="totalunreadcount" class="msgNum" style="display:none;"></font></span></a>
+                <a href="javascript:void(0)" title="聊天"><span><font id="totalunreadcount" class="msgNum"
+                                                                    style="display:none;"></font></span></a>
             </div>
             <div class="cutOffRule" style="width: 2px;"></div>
             <div class="addrBtn selected">
@@ -105,12 +109,13 @@
         </div>
     </div>
     <div class="right_box" style="display:none ;">
-        <div class="right"style="position: relative">
-            <div class="dialog_box_header header" >
+        <div class="right" style="position: relative">
+            <div class="dialog_box_header header">
                 <a href="javascript:void(0)" class="btnBack">＜ 返回 <label></label></a>
                 <span id="conversationTitle"></span>
             </div>
-            <div id="notice" style="z-index: 1000;display: none;width: 100%;height: 30px;background: #ffffff;position: absolute;border: solid 1px #ccc;text-align: center;line-height: 30px;">
+            <div id="notice"
+                 style="z-index: 1000;display: none;width: 100%;height: 30px;background: #ffffff;position: absolute;border: solid 1px #ccc;text-align: center;line-height: 30px;">
 
             </div>
             <div class="dialog_box">
@@ -141,11 +146,12 @@
     © 2015 Rong Cloud. V 0.9.8
 </div>
 </body>
- <script src='static/js/jquery-1.8.2.min.js'></script>
-    <script src='static/js/jquery.nicescroll.js?v=2'></script>
-    <script src="http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js?v=123"></script>
-    <script src="static/js/engine.js"></script>
-    <script src="http://res.websdk.rongcloud.cn/RongIMClient.voice-0.9.1.min.js"></script>
+<script src='static/js/jquery-1.8.2.min.js'></script>
+<script src='static/js/jquery.nicescroll.js?v=2'></script>
+<!--<script src="http://res.websdk.rongcloud.net/RongIMClient.js?v=13"></script>-->
+<script src="http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js"></script>
+<script src="static/js/engine.js"></script>
+<script src="http://res.websdk.rongcloud.cn/RongIMClient.voice-0.9.1.min.js"></script>
 <script src="http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js"></script>
 <script src="static/js/common.js"></script>
 <audio style="width: 0px;height: 0px;display: none;" src="static/images/sms-received.mp3" controls="controls">

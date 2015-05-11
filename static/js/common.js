@@ -520,9 +520,7 @@
         });
         $(".dialog_box").delegate('.voice', 'click', function (event) {
             if (typeof(conf.RongIMVoice) == 'boolean' && conf.RongIMVoice) {
-                var voice = JSON.parse($(this).attr('msg-type'))
-                voice = voice.content;
-                RongIMClient.voice.play(voice);
+                RongIMClient.voice.play($(this).next().val());
             }
         });
 

@@ -2,10 +2,10 @@
  * 本代码中的SDK代码均为最新版0.9.8版本
  * 修改本Demo的代码时注意SDK版本兼容性
  * Author:张亚涛
- * Date:2015-4-24
+ * Date:2015-5-8
  */
 
-$(function () {
+$(function (undefined) {
     //私有变量
     var currentConversationTargetId = 0,
         conver, _historyMessagesCache = {},
@@ -67,8 +67,6 @@ $(function () {
             location.href = "login.html";
         })
     });
-
-
     $.get("/discussion?_=" + Date.now(), function (data) {
         if (data.code == 200) {
             _html = "";
@@ -157,10 +155,10 @@ $(function () {
                         break;
                 }
                 $(".dialog_box div[messageId='" + content.getMessage().getMessageId() + "']").addClass("status_error");
-                console.alert('发送失败:' + info);
+                console.log('发送失败:' + info);
             }
         });
-        addhistoryMessages(content.getMessage());
+        addHistoryMessages(content.getMessage());
         initConversationList();
         $("#mainContent").val("");
     });
@@ -178,6 +176,38 @@ $(function () {
             RongIMClient.connect(token.token, {
                 onSuccess: function (x) {
                     console.log("connected，userid＝" + x);
+
+                    //链接成功之后同步会话列表
+                    RongIMClient.getInstance().syncConversationList({
+                        onSuccess: function () {
+                            //同步会话列表
+                            setTimeout(function () {
+                                $scope.ConversationList = RongIMClient.getInstance().getConversationList();
+                                var temp = null;
+                                for (var i = 0; i < $scope.ConversationList.length; i++) {
+                                    temp = $scope.ConversationList[i];
+                                    switch (temp.getConversationType()) {
+                                        case RongIMClient.ConversationType.CHATROOM:
+                                            temp.setConversationTitle('聊天室');
+                                            break;
+                                        case RongIMClient.ConversationType.CUSTOMER_SERVICE:
+                                            temp.setConversationTitle('客服');
+                                            break;
+                                        case RongIMClient.ConversationType.DISCUSSION:
+                                            temp.setConversationTitle('讨论组:' + temp.getTargetId());
+                                            break;
+                                        case RongIMClient.ConversationType.GROUP:
+                                            temp.setConversationTitle(namelist[temp.getTargetId()] || '未知群组');
+                                            break;
+                                        case RongIMClient.ConversationType.PRIVATE:
+                                            temp.getConversationTitle()||temp.setConversationTitle('陌生人:'+temp.getTargetId());
+                                    }
+                                }
+                                initConversationList();
+                            }, 1000);
+                        }, onError: function () {
+                        }
+                    })
                 },
                 onError: function (c) {
                     var info = '';
@@ -222,7 +252,7 @@ $(function () {
                             info = '设备号错误';
                             break;
                     }
-                    console.alert("失败:" + info);
+                    console.log("失败:" + info);
                 }
             });
         } else {
@@ -239,8 +269,6 @@ $(function () {
             switch (status) {
                 //链接成功
                 case RongIMClient.ConnectionStatus.CONNECTED:
-                    $scope.ConversationList = RongIMClient.getInstance().getConversationList();
-                    initConversationList();
                     console.log('链接成功');
                     break;
                 //正在链接
@@ -272,21 +300,35 @@ $(function () {
             if (hasSound) {
                 audio.play();
             }
-            var tempval = RongIMClient.getInstance().getConversation(data.getConversationType(), data.getTargetId());
+            //如果接收的消息为通知类型或者状态类型的消息，什么都不执行
+            if (data instanceof RongIMClient.NotificationMessage || data instanceof RongIMClient.StatusMessage) {
+                return;
+            }
+
             $scope.totalunreadcount = RongIMClient.getInstance().getTotalUnreadCount();
             $("#totalunreadcount").show().html($scope.totalunreadcount);
-            if (currentConversationTargetId != data.getTargetId()) {
-                if (document.title != "[新消息]融云 Demo - Web SDK") document.title = "[新消息]融云 Demo - Web SDK";
-                var person = $scope.friendsList.filter(function (item) {
-                    return item.id == data.getTargetId();
-                })[0];
-                if (person) {
-                    tempval.setConversationTitle(person.username);
-                } else {
-                    if (data.getTargetId() in namelist) {
-                        tempval.setConversationTitle(namelist[data.getTargetId()]);
-                    } else {
-                        RongIMClient.getInstance().getUserInfo(data.getTargetId(), {
+
+            //设置会话名称
+            var tempval = RongIMClient.getInstance().getConversation(data.getConversationType(), data.getTargetId());
+            if (tempval.getConversationTitle() == undefined) {
+                switch (data.getConversationType()) {
+                    case RongIMClient.ConversationType.CHATROOM:
+                        tempval.setConversationTitle('聊天室');
+                        break;
+                    case RongIMClient.ConversationType.CUSTOMER_SERVICE:
+                        tempval.setConversationTitle('客服');
+                        break;
+                    case RongIMClient.ConversationType.DISCUSSION:
+                        tempval.setConversationTitle('讨论组:' + data.getTargetId());
+                        break;
+                    case RongIMClient.ConversationType.GROUP:
+                        tempval.setConversationTitle(namelist[temp.getTargetId()] || '未知群组');
+                        break;
+                    case RongIMClient.ConversationType.PRIVATE:
+                        var person = $scope.friendsList.filter(function (item) {
+                            return item.id == data.getTargetId();
+                        })[0];
+                        person ? tempval.setConversationTitle(person.username) : RongIMClient.getInstance().getUserInfo(data.getTargetId(), {
                             onSuccess: function (x) {
                                 tempval.setConversationTitle(x.getUserName());
                             },
@@ -294,25 +336,30 @@ $(function () {
                                 tempval.setConversationTitle("陌生人Id：" + data.getTargetId());
                             }
                         });
-                    }
+                        break;
+                    default :
+                        tempval.setConversationTitle('该会话类型未解析:'+data.getConversationType()+data.getTargetId());
+                        break;
                 }
+            }
+
+            if (currentConversationTargetId != data.getTargetId()) {
+                if (document.title != "[新消息]融云 Demo - Web SDK") document.title = "[新消息]融云 Demo - Web SDK";
                 if (!_historyMessagesCache[data.getConversationType().valueOf() + "_" + data.getTargetId()]) _historyMessagesCache[data.getConversationType() + "_" + data.getTargetId()] = [data];
                 else _historyMessagesCache[data.getConversationType().valueOf() + "_" + data.getTargetId()].push(data);
             } else {
-                if (tempval.getConversationType() == RongIMClient.ConversationType.CHATROOM && tempval.getConversationTitle() == "") {
-                    tempval.setConversationTitle("聊天室");
-                }
-                addhistoryMessages(data);
+                addHistoryMessages(data);
             }
             initConversationList(data);
         }
     });
-
-    function addhistoryMessages(item) {
+    //渲染历史记录
+    function addHistoryMessages(item) {
         $scope.historyMessages.push(item);
-        $(".dialog_box:first").append(String.stringFormat(historyStr, item.getMessageDirection() == 0 ? "other_user" : "self", item.getMessageDirection() == 1 ? owner.portrait : "static/images/personPhoto.png", "", item.getMessageDirection() == 0 ? 'white_arrow.png' : 'blue_arrow.png', myUtil.msgType(item), item.getMessageId()));
+        $(".dialog_box:first").append(String.stringFormat(historyStr, item.getMessageDirection() == RongIMClient.MessageDirection.RECEIVE ? "other_user" : "self", item.getMessageDirection() == RongIMClient.MessageDirection.SEND ? owner.portrait : "static/images/personPhoto.png", "", item.getMessageDirection() == RongIMClient.MessageDirection.RECEIVE ? 'white_arrow.png' : 'blue_arrow.png', myUtil.msgType(item), item.getMessageId()));
     }
 
+    //加载会话列表
     function initConversationList() {
         _html = "";
         $scope.ConversationList.forEach(function (item) {
@@ -322,13 +369,27 @@ $(function () {
     }
 
     //加载历史记录
-    function getHistory(id, name, type) {
+    function getHistory(id, name, type, again) {
         if (!window.Modules) //检测websdk是否已经加载完毕
             return;
         conver = type;
         currentConversationTargetId = id;
         if (!_historyMessagesCache[type + "_" + currentConversationTargetId]) _historyMessagesCache[type + "_" + currentConversationTargetId] = [];
         $scope.historyMessages = _historyMessagesCache[type + "_" + currentConversationTargetId];
+
+        if ($scope.historyMessages.length == 0 && !again) {
+            RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.setValue(conver), currentConversationTargetId, 5, {
+                onSuccess: function (has, list) {
+                    console.log("是否有剩余消息：" + has);
+                    _historyMessagesCache[type + "_" + currentConversationTargetId] = list;
+                    getHistory(currentConversationTargetId, name, conver, 1);
+                }, onError: function () {
+                    console.log('获取历史消息失败');
+                    getHistory(currentConversationTargetId, name, conver, 1);
+                }
+            });
+            return;
+        }
         $scope.conversationTitle = name;
         var tempval = RongIMClient.getInstance().getConversation(RongIMClient.ConversationType.setValue(conver), currentConversationTargetId)
         $("#conversationTitle").next().remove();
@@ -340,6 +401,9 @@ $(function () {
         $scope.historyMessages.forEach(function (item, i) {
             _html += String.stringFormat(historyStr, item.getMessageDirection() == 0 ? "other_user" : "self", item.getMessageDirection() == 1 ? owner.portrait : "static/images/personPhoto.png", "", item.getMessageDirection() == 0 ? 'white_arrow.png' : 'blue_arrow.png', myUtil.msgType(item), item.getMessageId());
         });
+        if (again == 1 && _html) {
+            _html += "<div class='historySymbol'>已上为历史消息</div>";
+        }
         $(".dialog_box:first").html(_html);
         if (tempval === null) {
             return;
@@ -374,6 +438,8 @@ var myUtil = {
                 return String.stringFormat('<div class="msgBody voice">{0}</div><input type="hidden" value="' + message.getContent() + '">', "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + message.getDuration());
             case RongIMClient.MessageType.LocationMessage:
                 return String.stringFormat('<div class="msgBody">{0}</div>{1}', "[位置消息]" + message.getPoi(), "<img src='data:image/png;base64," + message.getContent() + "'/>");
+            default :
+                return '<div class="msgBody">' + message.getMessageType().toString() + ':此消息类型Demo未解析</div>'
         }
     },
     initEmotion: function (str) {
