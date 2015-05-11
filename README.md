@@ -1,8 +1,7 @@
 demo-web-sdk
 ============
+
 Demostration of Rong Web SDK.
-<<<<<<< HEAD
-=======
 
 ## 融云 Web SDK 如何使用
 
@@ -216,7 +215,7 @@ RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.PRIV
  //-----------------------------------------------------------------------------------------------------------------
  //|Mobile Feature| Android | Chrome for Android | Firefox Mobile (Gecko) | IE Phone | Opera Mobile | Safari Mobile|
  //-----------------------------------------------------------------------------------------------------------------
- //|Basic support |     ?   |     0.16	(Yes)    |          ?             |     ?    |     ?        |      ?       |  
+ //|Basic support |     ?   |     0.16  (Yes)    |          ?             |     ?    |     ?        |      ?       |  
  //-----------------------------------------------------------------------------------------------------------------
  
 ```
@@ -342,8 +341,8 @@ Web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
 ```
 ### 浏览器兼容性
 ```js
- //pc :     Firefox (Gecko) 3.6 (1.9.2)+     Chrome 7+	 Safari 6.0.2+
- //mobile :  Firefox (Gecko) 32+     Android 3+	 Safari 6.1+
+ //pc :     Firefox (Gecko) 3.6 (1.9.2)+     Chrome 7+   Safari 6.0.2+
+ //mobile :  Firefox (Gecko) 32+     Android 3+  Safari 6.1+
 ```
 <hr>
 ## Web 端本地存储帮助库如何使用？
@@ -382,7 +381,6 @@ Web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
 ```
 ### 浏览器兼容性
 ```js
- //pc :     Firefox (Gecko) 4 (2)+     Chrome 12+	 Internet Explorer 10+
+ //pc :     Firefox (Gecko) 4 (2)+     Chrome 12+  Internet Explorer 10+
  //mobile :  Firefox (Gecko) 6+
 ```
->>>>>>> origin/master
