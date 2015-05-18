@@ -398,7 +398,7 @@ $(function (undefined) {
         }
         $("#conversationTitle").html($scope.conversationTitle);
         _html = "";
-        $scope.historyMessages.forEach(function (item, i) {
+        $scope.historyMessages.forEach(function (item) {
             _html += String.stringFormat(historyStr, item.getMessageDirection() == 0 ? "other_user" : "self", item.getMessageDirection() == 1 ? owner.portrait : "static/images/personPhoto.png", "", item.getMessageDirection() == 0 ? 'white_arrow.png' : 'blue_arrow.png', myUtil.msgType(item), item.getMessageId());
         });
         if (again == 1 && _html) {
