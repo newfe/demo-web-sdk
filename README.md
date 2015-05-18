@@ -12,16 +12,17 @@ Demostration of Rong Web SDK.
 
 ## 指定版本号引用
 `http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js?v=123` 历史版本号目前可从0.9.1到0.9.8。
->+   [0.9.1](http://res.websdk.rongcloud.cn/RongIMClient-0.9.1.min.js?v=123)
->+   [0.9.2](http://res.websdk.rongcloud.cn/RongIMClient-0.9.2.min.js?v=123)
->+   [0.9.3](http://res.websdk.rongcloud.cn/RongIMClient-0.9.3.min.js?v=123)
->+   [0.9.4](http://res.websdk.rongcloud.cn/RongIMClient-0.9.4.min.js?v=123)
->+   [0.9.5](http://res.websdk.rongcloud.cn/RongIMClient-0.9.5.min.js?v=123)
->+   [0.9.6](http://res.websdk.rongcloud.cn/RongIMClient-0.9.6.min.js?v=123)
->+   [0.9.7](http://res.websdk.rongcloud.cn/RongIMClient-0.9.7.min.js?v=123)
->+   [0.9.8](http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js?v=123)
+>+   [0.9.1](http://res.websdk.rongcloud.cn/RongIMClient-0.9.1.min.js)
+>+   [0.9.2](http://res.websdk.rongcloud.cn/RongIMClient-0.9.2.min.js)
+>+   [0.9.3](http://res.websdk.rongcloud.cn/RongIMClient-0.9.3.min.js)
+>+   [0.9.4](http://res.websdk.rongcloud.cn/RongIMClient-0.9.4.min.js)
+>+   [0.9.5](http://res.websdk.rongcloud.cn/RongIMClient-0.9.5.min.js)
+>+   [0.9.6](http://res.websdk.rongcloud.cn/RongIMClient-0.9.6.min.js)
+>+   [0.9.7](http://res.websdk.rongcloud.cn/RongIMClient-0.9.7.min.js)
+>+   [0.9.8](http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js)
+>+   [0.9.9](http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min.js)
 
-#### 此事例中的代码皆为0.9.8版本，使用时请注意兼容性问题。
+#### 此事例中的代码皆为0.9.9版本，使用时请注意兼容性问题。
 
 ### 初始化 Web SDK ，此项必须设置
 ```js
