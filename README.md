@@ -188,7 +188,7 @@ element.onclick = function () {
 ```
 
 ### 获取历史纪录(此方法正处于调试阶段，后期可能会有改动)
-融云 `web SDK`最新提供`RongIMClient.getInstance().getHistoryMessages()`方法，来帮助开发者获取历史纪录。不再需要为如何在web端存储历史纪录而发愁。*使用此方法前提是APP必须`开启历史消息漫游`，如APP没有开启历史消息漫游则执行onError方法。*
+融云 `web SDK`最新提供`RongIMClient.getInstance().getHistoryMessages()`方法，来帮助开发者获取历史纪录。不再需要为如何在web端存储历史纪录而发愁。*使用此方法前提是APP必须`开启历史消息漫游(此接口为收费项目)`，如APP没有开启历史消息漫游则执行onError方法。*
 ```js
 // 此方法最多一次行拉取20条消息。拉取顺序按时间倒序拉取。
 RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.PRIVATE,'targeid',10,{
