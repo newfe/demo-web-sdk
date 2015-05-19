@@ -201,6 +201,64 @@ RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.PRIV
      }
 })
 ```
+### 注册自定义消息
+```
+//注册一个自定义消息
+RongIMClient.registerMessageType({messageType:'EmptyMessage',objectName:'s:empty',fieldList:['Name','Age','Address','Occupation']});
+
+var myMsg=new RongIMClient.EmptyMessage({Name:'Jeams',Age:32,Address:'beijing',Occupation:'Spy'});
+
+myMsg.getObjectName(); // => 's:empty' 根据此字段判断消息类型
+
+myMsg.getMessageType(); // => 'EmptyMessage' 消息名称
+
+myMsg.getMessageType() == RongIMClient.MessageType.EmptyMessage; // => true 注册完消息类型之后 RongIMClient.MessageType 会自动添加一个自定义消息类型
+
+myMsg instanceOf RongIMClient.RongIMMessage; // => true 继承自融云消息基类
+
+myMsg.getDetail(); // => {Name:'Jeams',Age:32,Address:'beijing',Occupation:'Spy'} 得到消息体
+```
+### 检测是否有未收到的消息
+融云目前的消息状态只有`送达`和`未送达`，没有`已读`和`未读`的状态。此接口用来查询是否有服务器`未送达`的消息。
+```
+//此接口可独立使用，不依赖init()和connect()方法。
+RongIMClient.hasUnreadMessages('e7x8xycsx6flq','mKmyKqTSf7aNDinwAFMnz7NXKILeV3X0+CCRBOxmtOApmvQjMathViWrePIfq0GuTu9jELQqsckv4AhfjCAKgQ==',{
+    onSuccess:function(symbol){
+        if(symbol){
+            // 有未收到的消息
+        }else{
+            // 没有未收到的消息
+        }
+    },onError:function(err){
+        // 错误处理...
+    }
+});
+```
+### 兼容CMD、AMD等CommonJS规范
+融云`web SDK`从`0.9.9`版本起将开始支持seaJs和requireJs等模块加载器。
+```
+//以下代码仅以requireJs做示范
+require.config({
+    paths: {
+        rongSDK: 'http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min.js'
+    }
+});
+require(['rongSDK'], function(RongIMClient) {
+    //do something ...
+});
+
+```
+此外，也可以当作子模块引入。
+```
+//当引用seaJs或requireJs的时候`web SDK`内部会定义一个 `RongIMClient`模块。所以，当想把SDK当作子模块引入时，直接引用`RongIMClient`就可以了。
+define("modules_one", ['RongIMClient'], function (rong) {
+    // do something ...
+});
+
+require(['modules_one'],function(modules){
+   //do something ... 
+});
+```
 
 ### Web SDK 浏览器兼容性
 ```js
