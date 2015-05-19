@@ -254,9 +254,19 @@ require(['rongSDK'], function(RongIMClient) {
 define("modules_one", ['RongIMClient'], function (rong) {
     // do something ...
 });
-
 require(['modules_one'],function(modules){
    //do something ... 
+});
+```
+使用`seaJs`进行模块加载
+```js
+seajs.config({
+    alias: {
+        rong: 'http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min'
+    }
+});
+seajs.use(['rong'], function () {
+     //do something ...
 });
 ```
 
