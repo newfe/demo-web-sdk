@@ -205,7 +205,7 @@ RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.PRIV
 ### 注册自定义消息
 ```js
 //注册一个自定义消息
-RongIMClient.registerMessageType({messageType:'EmptyMessage',objectName:'s:empty',fieldList:['Name','Age','Address','Occupation']});
+RongIMClient.registerMessageType({messageType:'EmptyMessage',objectName:'s:empty',fieldName:['Name','Age','Address','Occupation']});
 
 var myMsg=new RongIMClient.EmptyMessage({Name:'Jeams',Age:32,Address:'beijing',Occupation:'Spy'});
 
