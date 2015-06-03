@@ -430,6 +430,7 @@ Web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
 将消息对象添加到本地存储.
 ```js
      var msg=RongIMClient.TextMessage.obtain("this is a demo");
+     msg.setMessageId(Math.random());
      var messageId=msg.getMessageId();
      RongIMClient.indexedDB.addMessageToIndexedDB(msg,function(){
           console.log('add success');
