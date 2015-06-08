@@ -12,7 +12,7 @@ Demostration of Rong Web SDK.
 *如只想知晓如何使用 Web SDK 请参考 `SDK_Demo.html`*
 
 ## 指定版本号引用
-`http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min.js` 历史版本号目前可从0.9.1到0.9.9。
+`http://res.websdk.rongcloud.cn/RongIMClient-0.9.10.min.js` 历史版本号目前可从0.9.1到0.9.10。
 >+   [0.9.1](http://res.websdk.rongcloud.cn/RongIMClient-0.9.1.min.js)
 >+   [0.9.2](http://res.websdk.rongcloud.cn/RongIMClient-0.9.2.min.js)
 >+   [0.9.3](http://res.websdk.rongcloud.cn/RongIMClient-0.9.3.min.js)
@@ -22,8 +22,9 @@ Demostration of Rong Web SDK.
 >+   [0.9.7](http://res.websdk.rongcloud.cn/RongIMClient-0.9.7.min.js)
 >+   [0.9.8](http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js)
 >+   [0.9.9](http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min.js)
+>+   [0.9.10](http://res.websdk.rongcloud.cn/RongIMClient-0.9.10.min.js)
 
-#### 此事例中的代码皆为0.9.9版本，使用时请注意兼容性问题。
+#### 此事例中的代码皆为0.9.10版本，使用时请注意兼容性问题。
 
 ### 初始化 Web SDK ，此项必须设置
 ```js
@@ -223,7 +224,7 @@ myMsg.getDetail(); // => {Name:'Jeams',Age:32,Address:'beijing',Occupation:'Spy'
 融云目前的消息状态只有`送达`和`未送达`，没有`已读`和`未读`的状态。此接口用来查询是否有服务器`未送达`的消息。
 ```js
 //此接口可独立使用，不依赖init()和connect()方法。
-RongIMClient.hasUnreadMessages('e7x8xycsx6flq','mKmyKqTSf7aNDinwAFMnz7NXKILeV3X0+CCRBOxmtOApmvQjMathViWrePIfq0GuTu9jELQqsckv4AhfjCAKgQ==',{
+RongIMClient.hasUnreadMessages('APPKEY','TOKEN',{
     onSuccess:function(symbol){
         if(symbol){
             // 有未收到的消息
@@ -241,7 +242,7 @@ RongIMClient.hasUnreadMessages('e7x8xycsx6flq','mKmyKqTSf7aNDinwAFMnz7NXKILeV3X0
 //以下代码仅以requireJs做示范
 require.config({
     paths: {
-        rongSDK: 'http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min.js'
+        rongSDK: 'http://res.websdk.rongcloud.cn/RongIMClient-0.9.10.min'
     }
 });
 require(['rongSDK'], function(RongIMClient) {
@@ -305,6 +306,14 @@ Web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
 ```
 ##通道选项优先级比较
 `window.WEB_SOCKET_FORCE_FLASH > window.WEB_XHR_POLLING`
+
+### 使用指定存储
+强制使用localstorage存储SDK标识数据，主要用来兼容Hybrid应用。
+*(ps:在Hybrid应用中无法使用Cookie功能，导致SDK程序异常。可使用此选项，将标志数据存储到localstorage中。)*
+```js
+     //兼容Hybrid应用，可设置此项
+     window.FORCE_LOCAL_STORAGE = true;
+```
 
 #### 注意:
  1 : `Web SDK` 是全异步的，所以发送消息之前确保链接成功。<br/>
