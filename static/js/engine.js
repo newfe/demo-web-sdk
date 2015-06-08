@@ -78,6 +78,7 @@ $(function (undefined) {
     });
     $.get("/friends?_=" + Date.now(), function (data) {
         if (data.code == 200) {
+             _html = "";
             $scope.friendsList = data.result.slice(0,200);
             $scope.friendsList.forEach(function (item) {
                 _html += String.stringFormat(friendListStr, item.id, item.username)
