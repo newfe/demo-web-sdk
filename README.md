@@ -8,10 +8,11 @@ Demostration of Rong Web SDK.
 [文档参考](http://docs.rongcloud.cn/api/js/index.html " SDK 文档")
 
 
-使用融云 `Web SDK` 发消息之前必须利用申请的`appkey`进行初始化，只有在初始化之后才能使用RongIMClient.getInstance()方法得到实例.如只想知晓如何使用 Web SDK 请参考 `SDK_Demo.html`
+使用融云 `Web SDK` 发消息之前必须利用申请的`appkey`进行初始化，只有在初始化之后才能使用RongIMClient.getInstance()方法得到实例.<br/>
+*如只想知晓如何使用 Web SDK 请参考 `SDK_Demo.html`*
 
 ## 指定版本号引用
-`http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js?v=123` 历史版本号目前可从0.9.1到0.9.8。
+`http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min.js` 历史版本号目前可从0.9.1到0.9.9。
 >+   [0.9.1](http://res.websdk.rongcloud.cn/RongIMClient-0.9.1.min.js)
 >+   [0.9.2](http://res.websdk.rongcloud.cn/RongIMClient-0.9.2.min.js)
 >+   [0.9.3](http://res.websdk.rongcloud.cn/RongIMClient-0.9.3.min.js)
@@ -188,7 +189,7 @@ element.onclick = function () {
 ```
 
 ### 获取历史纪录(此方法正处于调试阶段，后期可能会有改动)
-融云 `web SDK`最新提供`RongIMClient.getInstance().getHistoryMessages()`方法，来帮助开发者获取历史纪录。不再需要为如何在web端存储历史纪录而发愁。*使用此方法前提是APP必须`开启历史消息漫游`，如APP没有开启历史消息漫游则执行onError方法。*
+融云 `web SDK`最新提供`RongIMClient.getInstance().getHistoryMessages()`方法，来帮助开发者获取历史纪录。不再需要为如何在web端存储历史纪录而发愁。*使用此方法前提是APP必须`开启历史消息漫游(此接口为收费项目)`，如APP没有开启历史消息漫游则执行onError方法。*
 ```js
 // 此方法最多一次行拉取20条消息。拉取顺序按时间倒序拉取。
 RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.PRIVATE,'targeid',10,{
@@ -200,6 +201,74 @@ RongIMClient.getInstance().getHistoryMessages(RongIMClient.ConversationType.PRIV
      // throw new ERROR ......
      }
 })
+```
+### 注册自定义消息
+```js
+//注册一个自定义消息
+RongIMClient.registerMessageType({messageType:'EmptyMessage',objectName:'s:empty',fieldName:['Name','Age','Address','Occupation']});
+
+var myMsg=new RongIMClient.EmptyMessage({Name:'Jeams',Age:32,Address:'beijing',Occupation:'Spy'});
+
+myMsg.getObjectName(); // => 's:empty' 根据此字段判断消息类型
+
+myMsg.getMessageType(); // => 'EmptyMessage' 消息名称
+
+myMsg.getMessageType() == RongIMClient.MessageType.EmptyMessage; // => true 注册完消息类型之后 RongIMClient.MessageType 会自动添加一个自定义消息类型
+
+myMsg instanceOf RongIMClient.RongIMMessage; // => true 继承自融云消息基类
+
+myMsg.getDetail(); // => {Name:'Jeams',Age:32,Address:'beijing',Occupation:'Spy'} 得到消息体
+```
+### 检测是否有未收到的消息
+融云目前的消息状态只有`送达`和`未送达`，没有`已读`和`未读`的状态。此接口用来查询是否有服务器`未送达`的消息。
+```js
+//此接口可独立使用，不依赖init()和connect()方法。
+RongIMClient.hasUnreadMessages('e7x8xycsx6flq','mKmyKqTSf7aNDinwAFMnz7NXKILeV3X0+CCRBOxmtOApmvQjMathViWrePIfq0GuTu9jELQqsckv4AhfjCAKgQ==',{
+    onSuccess:function(symbol){
+        if(symbol){
+            // 有未收到的消息
+        }else{
+            // 没有未收到的消息
+        }
+    },onError:function(err){
+        // 错误处理...
+    }
+});
+```
+### 兼容CMD、AMD等CommonJS规范
+融云`web SDK`从`0.9.9`版本起将开始支持seaJs和requireJs等模块加载器。
+```js
+//以下代码仅以requireJs做示范
+require.config({
+    paths: {
+        rongSDK: 'http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min.js'
+    }
+});
+require(['rongSDK'], function(RongIMClient) {
+    //do something ...
+});
+
+```
+此外，也可以当作子模块引入。
+*当引用seaJs或requireJs的时候`web SDK`内部会定义一个 `RongIMClient`模块。所以，当想把SDK当作子模块引入时，直接引用`RongIMClient`就可以了。*
+```js
+define("modules_one", ['RongIMClient'], function (rong) {
+    // do something ...
+});
+require(['modules_one'],function(modules){
+   //do something ... 
+});
+```
+使用`seaJs`进行模块加载
+```js
+seajs.config({
+    alias: {
+        rong: 'http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min'
+    }
+});
+seajs.use(['rong'], function () {
+     //do something ...
+});
 ```
 
 ### Web SDK 浏览器兼容性
@@ -361,6 +430,7 @@ Web SDK 通道采用层层降级的方式进行兼容处理。连接通道首先
 将消息对象添加到本地存储.
 ```js
      var msg=RongIMClient.TextMessage.obtain("this is a demo");
+     msg.setMessageId(Math.random());
      var messageId=msg.getMessageId();
      RongIMClient.indexedDB.addMessageToIndexedDB(msg,function(){
           console.log('add success');

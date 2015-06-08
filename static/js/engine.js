@@ -2,7 +2,11 @@
  * 本代码中的SDK代码均为最新版0.9.9版本
  * 修改本Demo的代码时注意SDK版本兼容性
  * Author:张亚涛
+<<<<<<< HEAD
  * Date:2015-6-8
+=======
+ * Date:2015-5-18
+>>>>>>> origin/master
  */
 
 $(function (undefined) {
