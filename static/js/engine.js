@@ -1,8 +1,8 @@
 /**
- * 本代码中的SDK代码均为最新版0.9.8版本
+ * 本代码中的SDK代码均为最新版0.9.9版本
  * 修改本Demo的代码时注意SDK版本兼容性
  * Author:张亚涛
- * Date:2015-5-8
+ * Date:2015-6-8
  */
 
 $(function (undefined) {
@@ -78,7 +78,7 @@ $(function (undefined) {
     });
     $.get("/friends?_=" + Date.now(), function (data) {
         if (data.code == 200) {
-            $scope.friendsList = data.result;
+            $scope.friendsList = data.result.slice(0,200);
             $scope.friendsList.forEach(function (item) {
                 _html += String.stringFormat(friendListStr, item.id, item.username)
             });
@@ -206,6 +206,7 @@ $(function (undefined) {
                                 initConversationList();
                             }, 1000);
                         }, onError: function () {
+                            $scope.ConversationList = RongIMClient.getInstance().getConversationList();
                         }
                     })
                 },
@@ -350,7 +351,7 @@ $(function (undefined) {
             } else {
                 addHistoryMessages(data);
             }
-            initConversationList(data);
+            initConversationList();
         }
     });
     //渲染历史记录
