@@ -96,11 +96,13 @@ $(function (undefined) {
     $("div.listAddr li:lt(4)").click(function () {
         getHistory(this.getAttribute("targetId"), this.getAttribute("targetName"), this.getAttribute("targetType"));
     });
+    var isJointed=false;
     $("#discussionRoom").delegate('li', 'click', function () {
-        if (window.RongBrIdge._client.chatroomId == 0) {
+        if(isJointed===false){
             RongIMClient.getInstance().joinChatRoom(this.getAttribute("targetId"), 10, {
                 onSuccess: function () {
                     $("#notice").show().css({"color": "green"}).text("加入聊天室成功").delay(2000).fadeOut("slow");
+                    isJointed=true;
                 }, onError: function () {
                     $("#notice").show().css({"color": "green"}).text("加入聊天室失败").delay(2000).fadeOut("slow");
                 }
