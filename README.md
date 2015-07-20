@@ -23,6 +23,7 @@ Demostration of Rong Web SDK.
 >+   [0.9.8](http://res.websdk.rongcloud.cn/RongIMClient-0.9.8.min.js)
 >+   [0.9.9](http://res.websdk.rongcloud.cn/RongIMClient-0.9.9.min.js)
 >+   [0.9.10](http://res.websdk.rongcloud.cn/RongIMClient-0.9.10.min.js)
+>+   [0.9.11](http://res.websdk.rongcloud.cn/RongIMClient-0.9.11.min.js)
 
 #### 此事例中的代码皆为0.9.10版本，使用时请注意兼容性问题。
 
